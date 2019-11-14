@@ -10,17 +10,17 @@ int main(){
 
 	int solution [NB_COLONNES];
 	initialiser_solution(solution);
-	int y = 0;
+	/*int y = 0;
 	for (y=0; y<NB_COLONNES; y++)
 		printf("%d\n", solution[y]);
-
+	*/
 	int proposition [NB_COLONNES];
 
 	combinaison c;
 
 	int nb_coups = 0;
 
-	printf("Saisir un jeu de couleur comme 1 1 2 3, valider par entree \n");
+	printf("Saisir un jeu de couleur comme 1 1 2 3, valide par entree !\n");
 
 	do {
 		int i,j,k;

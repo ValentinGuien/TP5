@@ -31,37 +31,32 @@ combinaison compiler_proposition(int proposition[NB_COLONNES], int solution[NB_C
 	c.bienp=0;
 	c.malp=0;
 	
-	int malpla [NB_COLONNES];
-	int k=0;
-	int m;
+	int copie_prop[NB_COLONNES];
+	int copie_sol[NB_COLONNES];
+	int i, j;
 
-	int i;
 	for (i=0; i<NB_COLONNES; i++) {
-		if (proposition[i] == solution[i]) {
+		copie_prop[i]=proposition[i];
+		copie_sol[i]=solution[i];
+	}
+
+	for (i=0; i<NB_COLONNES; i++) {
+		if (copie_prop[i] == copie_sol[i]) {
 			c.bienp+=1;
-			malpla[k] = i;
-			k++;
+			copie_prop[i]=-1;
+			copie_sol[i]=-1;
 		}
-		else {
-			int j=0;
-			int trouve = 0;  // 0 si on n'a pas trouve, 1 si on a trouve
-			while (j<NB_COLONNES && !trouve) {
-				if (proposition[i]==solution[j]) {
-					trouve = 1;
-					for(m=0; m<NB_COLONNES && trouve==1; m++) {
-						if (malpla[m]==j) {
-							trouve=0;
-							j++;
-						}
-					}
+	}
+	for (i=0;i<NB_COLONNES; i++) {
+		if (copie_prop[i] != -1){
+			for (j=0; j<NB_COLONNES && copie_prop[i] != -1; j++) {
+				if (copie_prop[i]==copie_sol[j]) {
+					c.malp+=1;
+					copie_prop[i]=-1;
+					copie_sol[j]=-1;
 				}
-				else
-					j++;
-				}
-			if (trouve)
-				c.malp+=1;
-			
-		     }
+			}
+		}
 	}
 	
 	return c;
